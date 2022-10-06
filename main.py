@@ -2,7 +2,7 @@ def has_numbers(input):
     return any(char.isdigit() for char in input)
 
 
-def checkCount(players, position):
+def check_count(players, position):
     count = 0
     for player in players:
         if player["poste"] == position:
@@ -11,6 +11,18 @@ def checkCount(players, position):
     if position == "G" and count == 1:
         return True
     elif position != "G" and count == 2:
+        return True
+    else:
+        return False
+
+
+def check_number_player(players, num):
+    count = 0
+    for player in players:
+        if player["numero"] == num:
+            count += 1
+
+    if count == 1:
         return True
     else:
         return False
@@ -25,15 +37,18 @@ def enter_player(players):
         except ValueError:
             print("La donnée saisie n'est pas valide\n")
             continue
+        if check_number_player(players, num):
+            print("Un joueur possède déjà ce numero")
+            continue
 
         firstname = input(
             f"Quel est le prénom du joueur numéro {num} ?; Le prénom doit être en caractère alphabetique \n")
-        if has_numbers(firstname) == True:
+        if has_numbers(firstname):
             print("La donnée saisie n'est pas valide\n")
             continue
 
         lastname = input(f"Quel est le nom du joueur numéro {num} ?; Le nom doit être en caractère alphabetique \n")
-        if has_numbers(lastname) == True:
+        if has_numbers(lastname):
             print("La donnée saisie n'est pas valide\n")
             continue
 
@@ -45,7 +60,7 @@ def enter_player(players):
             print("La donnée saisie n'est pas valide")
             continue
 
-        if checkCount(players, position) == True:
+        if check_count(players, position):
             print("Le nombre de place pour ce poste a atteint sa limite")
             continue
 
