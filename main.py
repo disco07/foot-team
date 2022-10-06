@@ -109,7 +109,7 @@ def player_team(players):
             team = input()
             if team not in teams:
                 print("La donnée saisie n'est pas valide")
-                player_team()
+                player_team(players)
 
             p["team"] = team
 
