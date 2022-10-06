@@ -1,8 +1,19 @@
 def has_numbers(input):
+    """
+    Check if input is on string format
+    :param input:
+    :return:
+    """
     return any(char.isdigit() for char in input)
 
 
 def check_count(players, position):
+    """
+    Check if player's position exists or not
+    :param players:
+    :param position:
+    :return: boolean
+    """
     count = 0
     for player in players:
         if player["poste"] == position:
@@ -17,6 +28,12 @@ def check_count(players, position):
 
 
 def check_number_player(players, num):
+    """
+    Check if player's number exists or not
+    :param players:
+    :param num:
+    :return: boolean
+    """
     count = 0
     for player in players:
         if player["numero"] == num:
@@ -29,9 +46,14 @@ def check_number_player(players, num):
 
 
 def enter_player(players):
+    """
+
+    :param players:
+    :return: array of player with player infos
+    """
     positions = ["A", "D", "AD", "AG", "M", "G"]
 
-    while len(players) < 2:
+    while len(players) < 22:
         try:
             num = int(input("Quel est le numéro du joueur ?; Le numero doit être entre 0 et 9 \n"))
         except ValueError:
@@ -54,7 +76,8 @@ def enter_player(players):
 
         print(f"Dans quel poste joue le joueur Numéro {num} ?")
         print(
-            "A pour attaquant, D pour défenseur, AD pour aile droite et AG pour aile gauche M pour milieu et G pour gardien")
+            "A pour attaquant, D pour défenseur, AD pour aile droite et AG pour aile gauche M pour milieu et G pour "
+            "gardien")
         position = input("\n")
         if position not in positions:
             print("La donnée saisie n'est pas valide")
@@ -69,6 +92,11 @@ def enter_player(players):
 
 
 def player_team(players):
+    """
+
+    :param players:
+    :return: array of players with player's team infos
+    """
     teams = ["P", "R"]
     check = True
     while check:
@@ -88,11 +116,13 @@ def player_team(players):
         break
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     players = []
 
+    print("********************Constitution de l'équipe********************")
     enter_player(players)
+
+    print("********************Principal ou Remplaçant********************")
     player_team(players)
 
     team_p = []
@@ -103,9 +133,8 @@ if __name__ == '__main__':
         else:
             team_r.append(p)
 
-    print("------Equipe principale------")
+    print("-------------------Equipe principale-------------------")
     print(team_p)
-    print("------Equipe remplaçante------")
-    print(team_r)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    print("-------------------Equipe remplaçante-------------------")
+    print(team_r)
