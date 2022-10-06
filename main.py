@@ -19,12 +19,7 @@ def check_count(players, position):
         if player["poste"] == position:
             count += 1
 
-    if position == "G" and count == 1:
-        return True
-    elif position != "G" and count == 2:
-        return True
-    else:
-        return False
+    return (position == "G" and count == 1) or (position != "G" and count == 2)
 
 
 def check_number_player(players, num):
@@ -39,10 +34,7 @@ def check_number_player(players, num):
         if player["numero"] == num:
             count += 1
 
-    if count == 1:
-        return True
-    else:
-        return False
+    return count == 1
 
 
 def enter_player(players):
@@ -98,8 +90,8 @@ def player_team(players):
     :return: array of players with player's team infos
     """
     teams = ["P", "R"]
-    check = True
-    while check:
+
+    while True:
         for p in players:
             numero = p["numero"]
             prenom = p["prenom"]
